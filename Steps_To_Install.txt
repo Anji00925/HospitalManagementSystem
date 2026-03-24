@@ -1,0 +1,82 @@
+Use Spring Initializer website
+
+1️⃣ Open browser
+2️⃣ Go to:
+
+https://start.spring.io
+
+
+3️⃣ Select:
+
+Project: Maven
+
+Language: Java
+
+Spring Boot: default
+
+Java: 21
+
+Dependencies:
+
+Spring Web
+
+Spring Data JPA
+
+MySQL Driver
+
+4️⃣ Click Generate
+5️⃣ Download ZIP
+6️⃣ Extract (Extract where you want your folder to open in IntelliJ)
+7️⃣ Open folder in IntelliJ (Open → select folder)
+
+
+NEXT OPEN pom.xml
+ AND ADD 
+
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <version>3.11.0</version>
+            <configuration>
+                <source>21</source>
+                <target>21</target>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
+
+🔄 STEP 4: Reload Maven (VERY IMPORTANT)
+
+In IntelliJ:
+
+Open Maven panel (right side)
+
+Click Reload 🔄
+OR
+
+Right-click pom.xml → Reload Maven Project
+
+▶️ STEP 5: RUN AGAIN
+
+Run DemoApplication
+
+Error will be GONE
+
+
+Go Too src/main/resources/application.properties
+ and add 
+
+# Database configuration
+spring.datasource.url=jdbc:mysql://localhost:3306/testdb
+spring.datasource.username=root
+spring.datasource.password=your_password
+
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+
+# JPA / Hibernate
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+

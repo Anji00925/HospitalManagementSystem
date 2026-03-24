@@ -1,0 +1,56 @@
+.page-title {
+  margin-bottom: 20px;
+}
+
+.card {
+  background: #fff;
+  padding: 20px;
+  margin-bottom: 25px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.08);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.form-grid input,
+.form-grid button {
+  padding: 10px;
+  font-size: 14px;
+}
+
+.form-grid button {
+  background: #1976d2;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+.form-grid button:hover {
+  background: #125aa3;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table th,
+.data-table td {
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.badge {
+  padding: 4px 8px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+
+.badge.booked {
+  background: #e3f2fd;
+  color: #1565c0;
+}

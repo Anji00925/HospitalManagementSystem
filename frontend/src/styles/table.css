@@ -1,0 +1,35 @@
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+th, td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+th {
+  background: #1e293b;
+  color: white;
+}
+
+.form-row {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.form-row input {
+  padding: 8px;
+  flex: 1;
+}
+
+button {
+  padding: 8px 15px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
