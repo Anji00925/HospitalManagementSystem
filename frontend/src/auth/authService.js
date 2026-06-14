@@ -8,5 +8,9 @@ export const loginUser = (data) => {
   return api.post("/auth/login", data);
 };
 
-localStorage.setItem("token", response.data.token);
-localStorage.setItem("username", response.data.username);
+localStorage.setItem("auth", JSON.stringify({
+  token: response.data.token,
+  role: response.data.role,
+  email: response.data.email,
+  id: response.data.id
+}));

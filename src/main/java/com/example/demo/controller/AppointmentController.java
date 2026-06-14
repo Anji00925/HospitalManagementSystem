@@ -83,6 +83,7 @@ package com.example.demo.controller;
 
 import com.example.demo.dto.AppointmentRequest;
 import com.example.demo.dto.AppointmentResponseDto;
+import com.example.demo.dto.StatusUpdateRequest;
 import com.example.demo.entity.Appointment;
 import com.example.demo.entity.Doctor;
 import com.example.demo.entity.Patient;
@@ -91,7 +92,10 @@ import com.example.demo.repository.DoctorRepository;
 import com.example.demo.repository.PatientRepository;
 import com.example.demo.service.AppointmentService;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/appointments")
@@ -116,6 +120,7 @@ public class AppointmentController {
     }
 
     // ✅ CREATE
+    @PreAuthorize("hasRole('RECEPTIONIST')")
     @PostMapping
     public ResponseEntity<AppointmentResponseDto> create(
             @RequestBody AppointmentRequest body
@@ -150,6 +155,7 @@ public class AppointmentController {
     }
 
     // ✅ GET ALL
+//    @PreAuthorize("hasAnyRole('DOCTOR','RECEPTIONIST')")
     @GetMapping
     public ResponseEntity<?> getAll() {
         return ResponseEntity.ok(
@@ -169,6 +175,7 @@ public class AppointmentController {
     }
 
     // ✅ PAGED
+    @PreAuthorize("hasAnyRole('DOCTOR','RECEPTIONIST')")
     @GetMapping("/page")
     public ResponseEntity<?> getAllPaged(
             @RequestParam(defaultValue = "0") int page,
@@ -182,6 +189,7 @@ public class AppointmentController {
     }
 
     // ✅ SOFT DELETE
+    @PreAuthorize("hasRole('ADMIN')")
     @DeleteMapping("/{id}")
     public ResponseEntity<?> softDelete(@PathVariable Long id) {
         Appointment appt = appointmentRepository.findById(id)
@@ -191,5 +199,24 @@ public class AppointmentController {
         appointmentRepository.save(appt);
 
         return ResponseEntity.ok().build();
+    }
+
+    @PreAuthorize("hasRole('DOCTOR')")
+    @PutMapping("/status/{id}")
+    public ResponseEntity<?> updateStatus(
+            @PathVariable Long id,
+            @RequestBody StatusUpdateRequest request
+    ) {
+        Appointment appt = appointmentRepository.findById(id)
+                .orElseThrow(() -> new RuntimeException("Appointment not found"));
+
+        System.out.println("STATUS: " + request.getStatus());
+
+        System.out.println("FULL REQUEST: " + request);
+        System.out.println("STATUS VALUE: " + request.getStatus());
+
+        appt.setStatus(request.getStatus());
+
+        return ResponseEntity.ok(appointmentRepository.save(appt));
     }
 }

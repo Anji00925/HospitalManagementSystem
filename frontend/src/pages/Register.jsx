@@ -40,7 +40,8 @@ function Register() {
   const [form, setForm] = useState({
     username: "",
     email: "",
-    password: ""
+    password: "",
+    Role: ""
   });
 
   const [error, setError] = useState("");
@@ -103,6 +104,13 @@ function Register() {
             required
             onChange={handleChange}
           />
+
+          <select name="role" onChange={handleChange} required>
+            <option value="">Select Role</option>
+            <option value="ROLE_ADMIN">Admin</option>
+            <option value="ROLE_DOCTOR">Doctor</option>
+            <option value="ROLE_RECEPTIONIST">Receptionist</option>
+          </select>
 
           <button type="submit">Register</button>
         </form>
