@@ -29,9 +29,8 @@ MySQL Driver
 6️⃣ Extract (Extract where you want your folder to open in IntelliJ)
 7️⃣ Open folder in IntelliJ (Open → select folder)
 
-
 NEXT OPEN pom.xml
- AND ADD 
+ AND ADD
 
 <build>
     <plugins>

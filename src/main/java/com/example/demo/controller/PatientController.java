@@ -33,6 +33,7 @@ public class PatientController {
             @RequestParam(defaultValue = "id") String sortBy,
             @RequestParam(defaultValue = "asc") String direction
     ) {
+        System.out.println("INSIDE PATIENT CONTROLLER");
         return ResponseEntity.ok(service.getAll(page, size, sortBy, direction));
     }
 

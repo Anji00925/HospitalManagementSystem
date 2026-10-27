@@ -59,7 +59,9 @@ function Navbar() {
   return (
     <div className="navbar">
 
-      <span>Welcome, {auth?.username}</span>
+      <span>
+        Welcome, <strong>{auth?.username}</strong>
+      </span>
 
       {/* ✅ ROLE BASED LINKS */}
 

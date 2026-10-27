@@ -90,6 +90,11 @@ public class JwtFilter extends OncePerRequestFilter {
                         );
 
                 // 🔥 SET AUTH IN SPRING CONTEXT
+                System.out.println("========== JWT ==========");
+                System.out.println("Username = " + username);
+                System.out.println("Role = " + role);
+                System.out.println("Authority" + role);
+                System.out.println("=========================");
                 SecurityContextHolder.getContext().setAuthentication(auth);
 
             } catch (Exception e) {
