@@ -31,7 +31,7 @@
 
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
+import api from "./axios";
 import "../styles/auth.css";
 
 function Register() {
@@ -41,7 +41,7 @@ function Register() {
     username: "",
     email: "",
     password: "",
-    Role: ""
+    role: ""
   });
 
   const [error, setError] = useState("");
@@ -56,8 +56,6 @@ function Register() {
     setError("");
     setSuccess("");
 
-    import api from "./axios";
-
     try {
       await api.post("/auth/register", form);
 
@@ -68,7 +66,13 @@ function Register() {
       }, 1500);
 
     } catch (err) {
-      setError("Registration failed. Email may already exist.");
+      console.error("Registration error:", err.response?.data || err.message);
+
+      setError(
+        err.response?.data?.message ||
+        err.response?.data ||
+        "Registration failed. Please try again."
+      );
     }
   };
 
