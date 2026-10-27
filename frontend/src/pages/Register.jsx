@@ -56,11 +56,10 @@ function Register() {
     setError("");
     setSuccess("");
 
+    import api from "./axios";
+
     try {
-      await axios.post(
-        "http://localhost:8080/api/auth/register",
-        form
-      );
+      await api.post("/auth/register", form);
 
       setSuccess("Registration successful. Redirecting to login...");
 
